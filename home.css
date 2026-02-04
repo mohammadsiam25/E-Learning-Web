@@ -8,6 +8,8 @@
   --success-color: #10B981;
   --error-color: #EF4444;
   --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --max-content-width: 1440px;
+  --wide-screen-min: 1920px;
 }
 
 * {
@@ -24,10 +26,18 @@ html {
 
 body { 
   background-color: var(--bg-light);
-  max-width: 1440px;
-  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
   color: var(--secondary-color);
   line-height: 1.6;
+}
+
+/* মেইন কন্টেন্টের জন্য কন্টেইনার */
+.container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 40px;
 }
 
 /* ---Nav section--- */
@@ -38,8 +48,9 @@ body {
   background-color: var(--primary-color);
   padding: 16px 40px;
   border-radius: 12px;
-  margin: 20px;
+  margin: 20px auto;
   flex-wrap: wrap;
+  max-width: calc(var(--max-content-width) - 80px);
 }
 
 .navbar-left {
@@ -129,8 +140,7 @@ body {
 /* ---Hero section--- */
 .hero {
   text-align: center;
-  margin: 80px 20px;
-  padding: 40px 20px;
+  padding: 80px 0;
 }
 
 .hero-container {
@@ -165,6 +175,7 @@ h1 {
   border-radius: 12px;
   margin-bottom: 24px;
   line-height: 1.2;
+  display: inline-block;
 }
 
 .subheading {
@@ -234,9 +245,10 @@ h1 {
 .logos {
   background: var(--bg-white);
   padding: 32px;
-  margin: 40px 20px;
+  margin: 40px auto;
   border-radius: 8px;
   overflow: hidden;
+  max-width: var(--max-content-width);
 }
 
 .logo-bar {
@@ -262,7 +274,7 @@ h1 {
 }
 
 .hero-image-container {
-  margin: 40px 20px;
+  margin: 40px auto;
   text-align: center;
 }
 
@@ -277,10 +289,10 @@ h1 {
 
 /* ---Benefits section--- */
 .benefits {
-  margin: 80px 20px;
+  padding: 80px 0;
 }
 
-.section-header {
+.benefits-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -289,14 +301,14 @@ h1 {
   gap: 20px;
 }
 
-.section-text h2 {
+.benefits-header h2 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 16px;
   color: var(--secondary-color);
 }
 
-.section-text p {
+.benefits-header p {
   font-size: 1rem;
   color: var(--text-light);
   max-width: 600px;
@@ -325,10 +337,12 @@ h1 {
   outline: none;
 }
 
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
+.benefit-row1,
+.benefit-row2 {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .benefit-card {
@@ -338,6 +352,16 @@ h1 {
   position: relative;
   transition: all 0.3s ease;
   height: 100%;
+  flex: 1;
+  margin: 0 10px;
+}
+
+.benefit-card:first-child {
+  margin-left: 0;
+}
+
+.benefit-card:last-child {
+  margin-right: 0;
 }
 
 .benefit-card:hover {
@@ -388,23 +412,48 @@ h1 {
 
 /* ---Courses section--- */
 .courses {
-  margin: 80px 20px;
+  padding: 80px 0;
 }
 
-.courses-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
+.courses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.courses-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--secondary-color);
+}
+
+.courses-header p {
+  font-size: 1rem;
+  color: var(--text-light);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.course-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 20px;
 }
 
 .course-card {
   background: var(--bg-white);
-  padding: 32px;
+  padding: 40px;
   border-radius: 12px;
   transition: all 0.3s ease;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .course-card:hover {
@@ -414,7 +463,7 @@ h1 {
 
 .course-card img {
   width: 100%;
-  height: 200px;
+  height: 270px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 24px;
@@ -422,10 +471,10 @@ h1 {
 
 .course-meta {
   display: flex;
+  gap: 30px;
+  font-size: 16px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
-  gap: 16px;
-  font-size: 0.875rem;
-  margin-bottom: 16px;
   color: var(--secondary-color);
 }
 
@@ -448,7 +497,6 @@ h1 {
   font-weight: 700;
   margin-bottom: 12px;
   color: var(--secondary-color);
-  flex-grow: 1;
 }
 
 .course-card p {
@@ -469,7 +517,7 @@ h1 {
   font-size: 1rem;
   font-weight: 600;
   padding: 16px;
-  margin-top: auto;
+  margin-top: 10px;
   transition: all 0.3s ease;
   text-decoration: none;
   text-align: center;
@@ -485,13 +533,38 @@ h1 {
 
 /* ---Testimonials section--- */
 .testimonial {
-  margin: 80px 20px;
+  padding: 80px 0;
 }
 
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
+.testimonial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.testimonial-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--secondary-color);
+}
+
+.testimonial-header p {
+  font-size: 1rem;
+  color: var(--text-light);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.testimonial-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 20px;
 }
 
 .testimonial-card {
@@ -500,9 +573,9 @@ h1 {
   border-radius: 12px;
   padding: 32px;
   transition: all 0.3s ease;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .testimonial-card:hover {
@@ -510,17 +583,13 @@ h1 {
   transform: translateY(-3px);
 }
 
-.testimonial-card blockquote {
-  margin-bottom: 24px;
-  flex-grow: 1;
-}
-
 .testimonial-card p {
   font-size: 1rem;
   font-style: italic;
   color: var(--text-light);
   line-height: 1.6;
-  margin-bottom: 0;
+  margin-bottom: 24px;
+  flex-grow: 1;
 }
 
 .testimonial-user {
@@ -576,14 +645,65 @@ h1 {
 
 /* ---Pricing plan section--- */
 .pricing-plan {
-  margin: 80px 20px;
+  padding: 80px 0;
+}
+
+.pricing-plan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pricing-plan-text h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--secondary-color);
+}
+
+.pricing-plan-text p {
+  font-size: 1rem;
+  color: var(--text-light);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.toggle-button {
+  display: flex;
+  background-color: var(--bg-white);
+  border-radius: 8px;
+  padding: 4px;
+  border: 2px solid var(--border-color);
+}
+
+.toggle-button button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  background: transparent;
+  color: var(--secondary-color);
+  transition: all 0.3s ease;
+}
+
+.toggle-button button.active {
+  background-color: var(--primary-color);
+  color: var(--bg-white);
+}
+
+.toggle-button button:hover:not(.active) {
+  background-color: var(--bg-light);
 }
 
 .pricing-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
-  margin-top: 40px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
 }
 
 .pricing-card {
@@ -592,8 +712,8 @@ h1 {
   border-radius: 12px;
   border: 2px solid var(--border-color);
   transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
+  flex: 1;
+  max-width: 500px;
 }
 
 .pricing-card.featured {
@@ -636,10 +756,22 @@ h1 {
   color: var(--text-light);
 }
 
+.feature-container {
+  padding: 24px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.feature-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .features {
   list-style: none;
   margin-bottom: 32px;
-  flex-grow: 1;
 }
 
 .features li {
@@ -682,6 +814,7 @@ h1 {
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
+  width: 100%;
 }
 
 .buy-btn:hover,
@@ -695,51 +828,21 @@ h1 {
   background-color: var(--primary-color);
 }
 
-.toggle-button {
-  display: flex;
-  background-color: var(--bg-white);
-  border-radius: 8px;
-  padding: 4px;
-  border: 2px solid var(--border-color);
-}
-
-.toggle-button button {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  background: transparent;
-  color: var(--secondary-color);
-  transition: all 0.3s ease;
-}
-
-.toggle-button button.active {
-  background-color: var(--primary-color);
-  color: var(--bg-white);
-}
-
-.toggle-button button:hover:not(.active) {
-  background-color: var(--bg-light);
-}
-
 /* ---FAQ section--- */
 .FAQ {
   background: var(--bg-white);
-  padding: 80px 40px;
-  margin: 80px 20px;
+  padding: 80px 0;
+  margin: 80px 0;
   border-radius: 12px;
 }
 
 .faq-container {
   display: flex;
-  flex-direction: column;
-  gap: 60px;
+  gap: 80px;
 }
 
 .faq-left {
-  text-align: center;
+  flex: 1;
 }
 
 .faq-left h2 {
@@ -754,14 +857,28 @@ h1 {
   color: var(--text-light);
   margin-bottom: 32px;
   max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+.See-all {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 24px;
+  background-color: var(--bg-white);
+  border: 2px solid var(--border-color);
+  color: var(--secondary-color);
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.See-all:hover {
+  background-color: var(--primary-color);
+  color: var(--bg-white);
 }
 
 .faq-right {
-  max-width: 800px;
-  margin: 0 auto;
-  width: 100%;
+  flex: 2;
 }
 
 .faq-item {
@@ -822,7 +939,7 @@ h1 {
 /* Footer section */
 .footer {
   background-color: var(--bg-white);
-  padding: 60px 40px 20px;
+  padding: 60px 0 20px;
   color: var(--secondary-color);
 }
 
@@ -897,6 +1014,7 @@ h1 {
 .social-icons {
   display: flex;
   gap: 16px;
+  margin-top: 10px;
 }
 
 .social-icons a {
@@ -1008,6 +1126,38 @@ h1 {
 }
 
 /* Responsive Design */
+@media (max-width: 1440px) {
+  .container {
+    max-width: 100%;
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .benefit-row1,
+  .benefit-row2,
+  .course-row,
+  .testimonial-row,
+  .pricing-container {
+    flex-direction: column;
+  }
+  
+  .benefit-card,
+  .course-card,
+  .testimonial-card,
+  .pricing-card {
+    margin: 10px 0;
+  }
+  
+  .pricing-card.featured {
+    transform: none;
+  }
+  
+  .faq-container {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 1024px) {
   html {
     font-size: 15px;
@@ -1023,22 +1173,23 @@ h1 {
   }
   
   .hero {
-    margin: 60px 20px;
+    padding: 60px 0;
   }
   
-  .section-text h2 {
+  .benefits-header h2,
+  .courses-header h2,
+  .testimonial-header h2,
+  .pricing-plan-text h2,
+  .faq-left h2 {
     font-size: 2rem;
   }
   
-  .pricing-container {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+  .container {
+    padding: 0 30px;
   }
   
-  .pricing-card.featured {
-    transform: none;
+  .faq-container {
+    gap: 40px;
   }
 }
 
@@ -1051,6 +1202,7 @@ h1 {
     flex-direction: column;
     gap: 16px;
     padding: 20px;
+    margin: 20px;
   }
   
   .navbar-left {
@@ -1096,7 +1248,10 @@ h1 {
     height: 30px;
   }
   
-  .section-header {
+  .benefits-header,
+  .courses-header,
+  .testimonial-header,
+  .pricing-plan-header {
     flex-direction: column;
     align-items: stretch;
   }
@@ -1105,56 +1260,8 @@ h1 {
     align-self: flex-start;
   }
   
-  .benefits-grid,
-  .courses-grid,
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .FAQ {
-    padding: 40px 20px;
-    margin: 60px 20px;
-  }
-  
-  .footer-top {
-    flex-direction: column;
-    gap: 40px;
-  }
-  
-  .footer-column-right {
-    flex-direction: column;
-  }
-  
-  .toggle-button {
-    width: 100%;
-  }
-  
-  .toggle-button button {
-    flex: 1;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    margin: 10px;
-    padding: 16px;
-  }
-  
-  .hero {
-    margin: 40px 10px;
-    padding: 20px 10px;
-  }
-  
-  h1 {
-    font-size: 1.5rem;
-  }
-  
-  .subheading {
-    font-size: 1.125rem;
-  }
-  
-  .section-text h2 {
-    font-size: 1.75rem;
+  .container {
+    padding: 0 20px;
   }
   
   .benefit-card,
@@ -1173,7 +1280,56 @@ h1 {
   }
   
   .footer {
-    padding: 40px 20px 20px;
+    padding: 40px 0 20px;
+  }
+  
+  .footer-top {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .footer-column-right {
+    flex-direction: column;
+  }
+  
+  .toggle-button {
+    width: 100%;
+  }
+  
+  .toggle-button button {
+    flex: 1;
+  }
+  
+  .FAQ {
+    margin: 60px 0;
+    padding: 40px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    margin: 10px;
+    padding: 16px;
+  }
+  
+  .hero {
+    padding: 40px 0;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  .subheading {
+    font-size: 1.125rem;
+  }
+  
+  .benefits-header h2,
+  .courses-header h2,
+  .testimonial-header h2,
+  .pricing-plan-text h2,
+  .faq-left h2 {
+    font-size: 1.75rem;
   }
   
   .logo-bar {
@@ -1182,6 +1338,166 @@ h1 {
   
   .logo-card {
     height: 25px;
+  }
+  
+  .course-meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .course-meta .instructor {
+    margin-left: 0;
+  }
+}
+
+/* ১৯২০px এর বেশি স্ক্রিনের জন্য বিশেষ স্টাইল */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1600px;
+  }
+  
+  .navbar {
+    max-width: 1560px;
+  }
+  
+  .hero {
+    padding: 120px 0;
+  }
+  
+  h1 {
+    font-size: 3.5rem;
+    padding: 32px 48px;
+  }
+  
+  .subheading {
+    font-size: 2.25rem;
+  }
+  
+  .logo-bar {
+    gap: 60px;
+  }
+  
+  .logo-card {
+    height: 60px;
+    transition: transform 0.3s ease;
+  }
+  
+  .logo-card:hover {
+    transform: scale(1.1);
+  }
+  
+  .benefit-card {
+    padding: 60px 40px;
+  }
+  
+  .course-card {
+    padding: 48px 40px;
+  }
+  
+  .pricing-container {
+    max-width: 1200px;
+    margin: 60px auto;
+  }
+  
+  .pricing-card {
+    padding: 48px 40px;
+  }
+  
+  .FAQ {
+    max-width: 1600px;
+    margin: 120px auto;
+    padding: 100px 60px;
+  }
+  
+  .faq-container {
+    flex-direction: row;
+    gap: 80px;
+  }
+  
+  .faq-left {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .faq-right {
+    flex: 2;
+  }
+  
+  .footer-top {
+    max-width: 1600px;
+    margin: 0 auto 60px;
+  }
+  
+  .footer-column-right {
+    gap: 80px;
+  }
+}
+
+/* ২৫৬০px (2K স্ক্রিন) এর জন্য অতিরিক্ত অপ্টিমাইজেশন */
+@media (min-width: 2560px) {
+  .container {
+    max-width: 1800px;
+  }
+  
+  .navbar {
+    max-width: 1760px;
+    padding: 20px 60px;
+  }
+  
+  h1 {
+    font-size: 4rem;
+    padding: 40px 60px;
+  }
+  
+  .subheading {
+    font-size: 2.75rem;
+  }
+  
+  .description {
+    font-size: 1.75rem;
+  }
+  
+  .benefit-card,
+  .course-card,
+  .testimonial-card {
+    padding: 60px 50px;
+  }
+  
+  .pricing-container {
+    max-width: 1400px;
+  }
+  
+  .FAQ {
+    max-width: 1800px;
+    padding: 120px 80px;
+  }
+}
+
+/* ৩৮৪০px (4K স্ক্রিন) এর জন্য */
+@media (min-width: 3840px) {
+  html {
+    font-size: 20px;
+  }
+  
+  .container {
+    max-width: 2000px;
+  }
+  
+  .navbar {
+    max-width: 1960px;
+    padding: 30px 80px;
+  }
+  
+  h1 {
+    font-size: 5rem;
+  }
+  
+  .logo-card {
+    height: 80px;
+  }
+  
+  .hero-image {
+    max-width: 1800px;
   }
 }
 
@@ -1207,4 +1523,18 @@ h1 {
     color: black !important;
     text-decoration: underline !important;
   }
-}
+  
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  
+  .benefit-card,
+  .course-card,
+  .testimonial-card,
+  .pricing-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+} 
