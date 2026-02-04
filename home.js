@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         errorModal.classList.add('active');
     }
 
-    function closeErrorModal() {
+    function closeErrorModal() { 
         errorModal.classList.remove('active');
     }
 
